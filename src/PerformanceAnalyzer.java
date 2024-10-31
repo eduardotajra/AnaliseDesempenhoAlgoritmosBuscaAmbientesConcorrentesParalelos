@@ -12,10 +12,14 @@ import Serial.QuickSort;
 
 public class PerformanceAnalyzer {
     public static void main(String[] args) {
-        int[] dataSizes = {10, 100, 1000, 10000, 100000}; // Novos tamanhos dos conjuntos de dados
-        int[] threadCounts = {1, 2, 4, 8, 16}; // Número de threads para teste
+        // Tamanho dos cojuntos de dados
+        int[] dataSizes = {10, 100, 1000, 10000, 100000};
+        //Quantidade de threads
+        int[] threadCounts = {1, 2, 4, 8, 16};
 
+        //Execução
         for (int dataSize : dataSizes) {
+            //Array gerado randomicamente com o tamanho pré determinado
             int[] originalArray = generateRandomArray(dataSize);
             System.out.println("\nTamanho do conjunto de dados: " + dataSize);
 
@@ -26,21 +30,25 @@ public class PerformanceAnalyzer {
                 csvWriter.append("Algoritmo,NumThreads,Tempo(ns),Tempo(ms)\n");
 
                 // Execuções Seriais
+                // Teste de BubbleSort serial
                 long timeBubbleSerial = analyzeSerialSort(originalArray, "Bubble Sort Serial", arr -> {
                     BubbleSort.bubbleSort(arr);
                 });
                 csvWriter.append("Bubble Sort Serial,1," + timeBubbleSerial + "," + (timeBubbleSerial / 1_000_000) + "\n");
 
+                // Teste de CoutingSort serial
                 long timeCountingSerial = analyzeSerialSort(originalArray, "Counting Sort Serial", arr -> {
                     CountingSort.countingSort(arr);
                 });
                 csvWriter.append("Counting Sort Serial,1," + timeCountingSerial + "," + (timeCountingSerial / 1_000_000) + "\n");
 
+                // Teste de MergeSort serial
                 long timeMergeSerial = analyzeSerialSort(originalArray, "Merge Sort Serial", arr -> {
                     MergeSort.mergeSort(arr, 0, arr.length - 1);
                 });
                 csvWriter.append("Merge Sort Serial,1," + timeMergeSerial + "," + (timeMergeSerial / 1_000_000) + "\n");
 
+                // Teste de QuickSort serial
                 long timeQuickSerial = analyzeSerialSort(originalArray, "Quick Sort Serial", arr -> {
                     QuickSort.quickSort(arr, 0, arr.length - 1);
                 });
@@ -50,25 +58,25 @@ public class PerformanceAnalyzer {
                 for (int numThreads : threadCounts) {
                     System.out.println("\nThreads usadas: " + numThreads);
 
-                    // Teste de Bubble Sort paralelo
+                    // Teste de BubbleSort paralelo
                     long timeBubbleParallel = analyzeParallelSort(originalArray, numThreads, "Bubble Sort Paralelo", (arr, threads) -> {
                         ParallelBubbleSort.bubbleSort(arr, threads);
                     });
                     csvWriter.append("Bubble Sort Paralelo," + numThreads + "," + timeBubbleParallel + "," + (timeBubbleParallel / 1_000_000) + "\n");
 
-                    // Teste de Counting Sort paralelo
+                    // Teste de CountingSort paralelo
                     long timeCountingParallel = analyzeParallelSort(originalArray, numThreads, "Counting Sort Paralelo", (arr, threads) -> {
                         ParallelCountingSort.countingSort(arr, threads);
                     });
                     csvWriter.append("Counting Sort Paralelo," + numThreads + "," + timeCountingParallel + "," + (timeCountingParallel / 1_000_000) + "\n");
 
-                    // Teste de Merge Sort paralelo
+                    // Teste de MergeSort paralelo
                     long timeMergeParallel = analyzeParallelSort(originalArray, numThreads, "Merge Sort Paralelo", (arr, threads) -> {
                         ParallelMergeSort.mergeSort(arr, threads);
                     });
                     csvWriter.append("Merge Sort Paralelo," + numThreads + "," + timeMergeParallel + "," + (timeMergeParallel / 1_000_000) + "\n");
 
-                    // Teste de Quick Sort paralelo
+                    // Teste de QuickSort paralelo
                     long timeQuickParallel = analyzeParallelSort(originalArray, numThreads, "Quick Sort Paralelo", (arr, threads) -> {
                         ParallelQuickSort.quickSort(arr, 0, arr.length - 1, threads);
                     });
@@ -83,6 +91,7 @@ public class PerformanceAnalyzer {
         }
     }
 
+    // Geração do array aleatório com o tamanho definido previamente
     private static int[] generateRandomArray(int size) {
         Random rand = new Random();
         int[] arr = new int[size];
@@ -92,6 +101,7 @@ public class PerformanceAnalyzer {
         return arr;
     }
 
+    // Execução e contagem de tempo do método serial passado por parâmetro
     private static long analyzeSerialSort(int[] originalArray, String algorithmName, SerialSortAlgorithm sortAlgorithm) {
         int[] arr = originalArray.clone();
         long startTime = System.nanoTime();
@@ -102,6 +112,7 @@ public class PerformanceAnalyzer {
         return duration;
     }
 
+    // Execução e contagem de tempo do método paralelo passado por parâmetro
     private static long analyzeParallelSort(int[] originalArray, int numThreads, String algorithmName, ParallelSortAlgorithm sortAlgorithm) {
         int[] arr = originalArray.clone();
         long startTime = System.nanoTime();
@@ -112,11 +123,13 @@ public class PerformanceAnalyzer {
         return duration;
     }
 
+    // Definição para poder tipar e passar o método Serial por parâmetro
     @FunctionalInterface
     interface SerialSortAlgorithm {
         void sort(int[] arr);
     }
 
+    // Definição para poder tipar e passar o método Paralelo por parâmetro
     @FunctionalInterface
     interface ParallelSortAlgorithm {
         void sort(int[] arr, int numThreads);
