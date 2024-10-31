@@ -29,8 +29,8 @@ Este projeto tem como objetivo analisar o desempenho de diferentes algoritmos de
 ## Como Executar
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/eduardotajra/An-lise-de-Desempenho-de-Algoritmos-de-Busca-em-Ambientes-Concorrentes-e-Paralelos
-   cd An-lise-de-Desempenho-de-Algoritmos-de-Busca-em-Ambientes-Concorrentes-e-Paralelos
+   git clone https://github.com/eduardotajra/AnaliseDesempenhoAlgoritmosBuscaAmbientesConcorrentesParalelos
+   cd AnaliseDesempenhoAlgoritmosBuscaAmbientesConcorrentesParalelos
    ```
 
 2. Compile o projeto Java:
