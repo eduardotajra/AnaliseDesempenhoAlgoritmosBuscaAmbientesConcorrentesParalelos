@@ -1,0 +1,25 @@
+Algoritmo,NumThreads,Tempo(ns),Tempo(ms)
+Bubble Sort Serial,1,11671160500,11671
+Counting Sort Serial,1,3125000,3
+Merge Sort Serial,1,11343200,11
+Quick Sort Serial,1,6047500,6
+Bubble Sort Paralelo,1,11122767500,11122
+Counting Sort Paralelo,1,60959400,60
+Merge Sort Paralelo,1,14229300,14
+Quick Sort Paralelo,1,7648900,7
+Bubble Sort Paralelo,2,4330256700,4330
+Counting Sort Paralelo,2,76366600,76
+Merge Sort Paralelo,2,9973700,9
+Quick Sort Paralelo,2,6536500,6
+Bubble Sort Paralelo,4,2154178300,2154
+Counting Sort Paralelo,4,50412000,50
+Merge Sort Paralelo,4,8149200,8
+Quick Sort Paralelo,4,6282100,6
+Bubble Sort Paralelo,8,973415600,973
+Counting Sort Paralelo,8,62937000,62
+Merge Sort Paralelo,8,8975500,8
+Quick Sort Paralelo,8,5067700,5
+Bubble Sort Paralelo,16,659521300,659
+Counting Sort Paralelo,16,57687500,57
+Merge Sort Paralelo,16,7214900,7
+Quick Sort Paralelo,16,4934600,4
