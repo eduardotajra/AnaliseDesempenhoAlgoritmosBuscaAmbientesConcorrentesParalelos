@@ -25,6 +25,8 @@ Este projeto tem como objetivo analisar o desempenho de diferentes algoritmos de
 
 ## Tecnologias Utilizadas
 - **Java SE 8+**: Para o desenvolvimento dos algoritmos e execução dos testes.
+- **Python 3**: Para a plotagem de gráficos dinâmicos.
+
 
 ## Como Executar
 1. Clone o repositório:
@@ -41,6 +43,13 @@ Este projeto tem como objetivo analisar o desempenho de diferentes algoritmos de
 3. Execute a análise de desempenho:
    ```bash
    java -cp bin PerformanceAnalyzer
+   ```
+
+4. Instalar as bibliotecas python:
+   ```bash
+   pip install nbformat --upgrade
+   pip install pandas
+   pip install plotly
    ```
 
 ## Resultados dos Testes
